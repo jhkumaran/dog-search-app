@@ -6,7 +6,6 @@ export const Container = styled.div`
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
-    overflow-y: hidden;
     @media ${FROM_MEDIUM} {
         padding: 40px;
     }
