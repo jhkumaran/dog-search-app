@@ -1,15 +1,4 @@
-import { FaSpinner } from 'react-icons/fa';
-import { FiCommand } from 'react-icons/fi';
-import styled, { keyframes } from 'styled-components';
-
-const spinningAnimate = keyframes`
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(720deg);
-    }
-`;
+import styled from 'styled-components';
 
 export const DogContainer = styled.div`
     border: 1px solid black;

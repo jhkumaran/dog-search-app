@@ -51,7 +51,7 @@ describe("test Search component", () => {
         )
         expect(screen.getByTestId(testConstants.SearchContainer)).toBeInTheDocument();
     });
-    it("check filter results", () => {
+    it("check filter results after debounce", () => {
         jest.useFakeTimers();
         render(
             <Redux.Provider store={store}>
