@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import * as styles from './styles';
+import { testConstants } from '../../utils/constants';
 
 function Dog({dog}) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const onLoaded = () => {
+    setIsLoaded(true);
+  }
   return (
-    <styles.DogContainer>
+    <styles.DogContainer data-testid={testConstants.DogContainer}>
       <styles.DogImageContainer>
-        <styles.DogImage src={dog.image?.url} alt={dog.name}/>
+        { 
+          !isLoaded && (
+            <styles.SpinnerContainer>
+              <styles.Spinner />
+            </styles.SpinnerContainer>
+          )
+        }
+        <styles.DogImage src={dog.image?.url} alt={dog.name} onLoad={onLoaded} loaded={isLoaded.toString()}/>
       </styles.DogImageContainer>
       <styles.DogDetails>
         <div>{dog.name}</div>

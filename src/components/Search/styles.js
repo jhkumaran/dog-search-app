@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { FROM_MEDIUM } from '../../utils/breakpoints';
 
 export const Container = styled.div`
     height: 100%;
     display: flex;
     box-sizing: border-box;
+    justify-content: center;
 `;
 
 export const SearchbarContainer = styled.div`
@@ -11,6 +13,9 @@ export const SearchbarContainer = styled.div`
     flex-direction: column;
     padding: 10px;
     width: 100%;
+    @media ${FROM_MEDIUM} {
+        width: 60%
+    }
 `;
 
 export const SearchInput = styled.input`

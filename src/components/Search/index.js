@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import * as styles from './styles';
 import Dog from '../Dog';
 import { FaSortAmountDown, FaSortAmountUp } from 'react-icons/fa'
+import { testConstants } from '../../utils/constants';
 
 function SearchComponent() {
   const [searchInput, setSearchInput] = useState('');
@@ -45,6 +46,7 @@ function SearchComponent() {
 
   const sortResults = () => {
     let sorted = [...results];
+    // eslint-disable-next-line default-case
     switch(selectedSortOption){
       case sortOptions[0].value:
         sortArray(compareNames, sorted);
@@ -55,8 +57,6 @@ function SearchComponent() {
       case sortOptions[2].value:
         sortArray(compareLifespan, sorted);
           break;
-      default:
-        sortArray(compareNames, sorted);
     }
     setSortedResults(sorted);
   }
@@ -91,13 +91,13 @@ function SearchComponent() {
   }
 
   return (
-    <styles.Container>
+    <styles.Container data-testid={testConstants.SearchContainer}>
       <styles.SearchbarContainer>
-        <styles.SearchInput type='text' placeholder='Enter a breed to search' onChange={(e) => debounceInput(e.target.value)}/>
+        <styles.SearchInput data-testid={testConstants.SearchInput} type='text' placeholder='Enter a breed to search' onChange={(e) => debounceInput(e.target.value)}/>
         { results.length > 0 && (
           <styles.SortByContainer>
             <div>Sort By</div>
-            <select value={selectedSortOption} onChange={(e) => setSelectedSortOption(e.target.value)}>
+            <select value={selectedSortOption} onChange={(e) => setSelectedSortOption(e.target.value)} data-testid={testConstants.SortbySelect}>
               {
                 sortOptions.map((sortOption) => (
                   <option value={sortOption.value} key={sortOption.value}>{sortOption.name}</option>
@@ -105,7 +105,11 @@ function SearchComponent() {
               }
             </select>
             {
-              isSortAsc ? <FaSortAmountDown onClick={() => setIsSortAsc(!isSortAsc)}/> : <FaSortAmountUp onClick={() => setIsSortAsc(!isSortAsc)}/>
+              isSortAsc ? (
+                <FaSortAmountDown onClick={() => setIsSortAsc(!isSortAsc)} data-testid={testConstants.AscButton}/>
+              ) : (
+                <FaSortAmountUp onClick={() => setIsSortAsc(!isSortAsc)} data-testid={testConstants.DescButton}/>
+              )
             }
           </styles.SortByContainer>
         )}
@@ -116,7 +120,7 @@ function SearchComponent() {
                   <Dog key={result.id} dog={result}/>
               )
             }) : searchInput !== "" ? (
-              <styles.NoResultsText>No results</styles.NoResultsText>
+              <styles.NoResultsText data-testid={testConstants.NoResult}>No results</styles.NoResultsText>
             ) : <></>
         }
     </styles.ResultContainer>

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getBreeds } from '../../data/slices/breedsSlice';
 import * as styles from './styles';
 import SearchComponent from '../Search';
+import { testConstants } from '../../utils/constants';
 
 function Home() {
-  const { breeds } = useSelector(state => state.breedsReducer);
   const dispatch = useDispatch();
   useEffect(() => {
     fetchBreeds();
@@ -15,7 +15,7 @@ function Home() {
     dispatch(getBreeds());
   }
   return (
-    <styles.Container>
+    <styles.Container data-testid={testConstants.HomeContainer}>
       <styles.Title>Dog Search App</styles.Title>
       <SearchComponent />
     </styles.Container>

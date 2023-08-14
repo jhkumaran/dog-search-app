@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FROM_LARGE, FROM_MEDIUM } from '../../utils/breakpoints'
+import { FROM_MEDIUM } from '../../utils/breakpoints'
 
 export const Container = styled.div`
     height: 100vh;

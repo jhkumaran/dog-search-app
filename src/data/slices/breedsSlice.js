@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { api } from '../api';
+import api from '../api';
 
 export const getBreeds = createAsyncThunk('getBreeds', async() => {
     const response = await api.get('/breeds')
